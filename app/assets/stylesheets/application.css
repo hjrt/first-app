@@ -13,6 +13,6 @@
  *= require_tree .
  *= require_self
  */
-.nav.nav-pills.nav-justified{
+.nav.nav-pills.nav-justified {
     margin: 0;
 }
