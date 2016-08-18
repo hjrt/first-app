@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  #resources :answers
-  resources :questions do 
-  	resources :answers
-  end
+  resources :answers
+  resources :questions
+  devise_for :admins
+  devise_for :users
+  root 'home#index'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

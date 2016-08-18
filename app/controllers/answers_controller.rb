@@ -1,5 +1,12 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  #before_action :authenticate_user!
+  #before_action :current_user, only: [:destroy]
+
+  #def current_user
+  #@answer = current_user.answers.find_by(id: params[:id])
+  #redirect_to_answers_path, notice: "you have no permission to delete this answer" if @answer.nil?
+  #end
 
   # GET /answers
   # GET /answers.json
