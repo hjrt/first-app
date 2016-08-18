@@ -1,10 +1,14 @@
-<%= link_to 'home', root_path %>
-<%= link_to 'ask a question', new_question_path %>
-<%= link_to 'see questions', questions_path %>
-<% if user_signed_in? %>
-Logged in as <strong><%= current_user.email %></strong>.
-<%= link_to 'settings', edit_user_registration_path %>
-<%= link_to 'logout', destroy_user_session_path, :method => :delete %>
-<% else %>
-<%= link_to 'sign in', new_user_session_path %>
-<% end %>
+<div class="container">
+  <ul class="nav nav-pills nav-justified">
+    <li><%= link_to 'home', root_path %></li>
+    <li><%= link_to 'ask a question', new_question_path %></li>
+    <li><%= link_to 'see questions', questions_path %></li>
+    <% if user_signed_in? %>
+    Logged in as <strong><%= current_user.email %></strong>.
+    <li><%= link_to 'settings', edit_user_registration_path %></li>
+    <li><%= link_to 'logout', destroy_user_session_path, :method => :delete %></li>
+    <% else %>
+    <li><%= link_to 'sign in', new_user_session_path %></li>
+    <% end %>
+  </ul>
+</div>
