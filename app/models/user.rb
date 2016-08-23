@@ -11,7 +11,7 @@ class User < ApplicationRecord
   def email_changed?
     false
   end
-  
+
   # Virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'
   # attr_accessor :login
@@ -22,6 +22,12 @@ class User < ApplicationRecord
 
   def login
     @login || self.username || self.email
+  end
+
+  def validate_username
+    if User.where(email: username).exists?
+      errors.add(:username, :invalid)
+    end
   end
 
     def self.find_for_database_authentication(warden_conditions)
