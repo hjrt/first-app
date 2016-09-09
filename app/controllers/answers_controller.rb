@@ -1,12 +1,13 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-  #before_action :authenticate_user!
-  #before_action :current_user, only: [:destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
-  #def current_user
-  #@answer = current_user.answers.find_by(id: params[:id])
-  #redirect_to_answers_path, notice: "you have no permission to delete this answer" if @answer.nil?
-  #end
+  
+  # def current_user
+  # @answer = current_user.answers.find_by(id: params[:id])
+  # redirect_to_answers_path, notice: "you have no permission to delete this answer" if @answer.nil?
+  # end
+
 
   # GET /answers
   # GET /answers.json
@@ -16,8 +17,8 @@ class AnswersController < ApplicationController
 
   # GET /answers/1
   # GET /answers/1.json
-  #def show
- # end
+  # def show
+  # end
 
   # GET /answers/1/edit
  # def edit
@@ -29,7 +30,7 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     @question = Question.find(params[:question_id])
     @answer.question = @question
-    #@answer.user = current_user
+    @answer.user = current_user
 
     respond_to do |format|
       if @answer.save
@@ -65,6 +66,36 @@ class AnswersController < ApplicationController
   #     format.json { head :no_content }
   #   end
   # end
+
+  def upvote 
+    @answer = Answer.find(params[:id])
+    @answer.upvote_by current_user
+    redirect_to :back
+  end  
+
+  def downvote
+    @answer = Answer.find(params[:id])
+    @answer.downvote_by current_user
+    redirect_to :back
+  end
+
+  def accept
+    @answer=Answer.find(params[:id])
+    @answer.accepted = true
+    question = @answer.question
+    question.accepted = true
+    question.save
+    
+    if @answer.save
+      flash[:notice] = "You accepted the answer"
+    else
+      flash[:notice] = "Try again later"
+    end
+    redirect_to @answer.question
+  end
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

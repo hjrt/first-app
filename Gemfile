@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 #gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'font-awesome-rails', '~> 4.6', '>= 4.6.3.1'
+gem 'acts_as_votable', '~> 0.10.0'
 
 group :development, :test do
   gem 'pry'

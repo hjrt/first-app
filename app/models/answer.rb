@@ -1,3 +1,7 @@
 class Answer < ApplicationRecord
-belongs_to :question
+	belongs_to :question
+	belongs_to :user
+	validates :content, presence: true
+	acts_as_votable
+	
 end
