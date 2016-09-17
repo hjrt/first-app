@@ -43,18 +43,6 @@ class AnswersController < ApplicationController
     end
   end
 
-  # def upvote 
-  #   @answer = Answer.find(params[:id])
-  #   @answer.upvote_by current_user
-  #   redirect_to :back
-  # end  
-
-  # def downvote
-  #   @answer = Answer.find(params[:id])
-  #   @answer.downvote_by current_user
-  #   redirect_to :back
-  # end
-
   def accept
     @answer=Answer.find(params[:id])
     @answer.accepted = true
@@ -81,26 +69,3 @@ class AnswersController < ApplicationController
       params.require(:answer).permit(:content)
     end
 end
-  # PATCH/PUT /answers/1
-  # PATCH/PUT /answers/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @answer.update(answer_params)
-  #       format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @answer }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @answer.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
-  # # DELETE /answers/1
-  # # DELETE /answers/1.json
-  # def destroy
-  #   @answer.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to answers_url, notice: 'Answer was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end

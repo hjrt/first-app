@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  
+  #before_action :user_got_points?, only: [:new, :create]
 
   # GET /questions
   # GET /questions.json
@@ -32,6 +32,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
+         @question.user.question_points
         format.html { redirect_to @question, notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else
