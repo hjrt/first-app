@@ -20,10 +20,11 @@
         </td>
         <td>
          	<% if current_user != answer.user %>
-        		<% if current_user.likes %>
-	        		<%= link_to "Unlike! (#{answer.likes.count})", unlike_answer_path(answer), method: :delete %>
+          <% # zarzadzaj swoim lajkiem # %>
+        		<% if answer.has_users_like(current_user) %>
+	        		<%= link_to "Unlike! (#{answer.likes.count})", answer_like_path(answer), method: :delete %>
 	        	<% else %>
-	        		<%= link_to "Like! (#{answer.likes.count})", like_answer_path(answer), method: :put %>
+	        		<%= link_to "Like! (#{answer.likes.count})", answer_likes_path(answer), method: :post %>
 	        	<% end %>
         	<% end %>
         </td>

@@ -5,15 +5,22 @@ Rails.application.routes.draw do
   end
 
   resources :answers do
-    #resources :likes, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy]
     member do
       put "accept", to: "answers#accept"
-      put "like", to: "answers#like"
-      delete "unlike", to: "answers#unlike"
+      # put "like", to: "answers#like"
+      # delete "unlike", to: "answers#unlike"
     end
   end
   
-  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" , :registrations => 'registrations'}
+
+  resource :user, only: [:edit] do
+    collection do
+      patch 'update_password'
+    end
+  end
+  
   
   root 'home#index'
 
