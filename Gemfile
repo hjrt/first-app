@@ -37,6 +37,7 @@ gem 'omniauth-github', '~> 1.1', '>= 1.1.2'
 gem 'font-awesome-rails', '~> 4.6', '>= 4.6.3.1'
 gem 'carrierwave', '~> 0.11.2'
 gem 'mini_magick', '~> 4.5', '>= 4.5.1'
+gem 'file_validators'
 
 # gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 # gem 'acts_as_votable', '~> 0.10.0'

@@ -11,9 +11,11 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    added_attrs = [:username, :email, :password, :password_confirmation, :remember_me, :avatar, :avatar_cache, :remove_avatar]
-    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
-    devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
-    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+    # added_attrs = [:username, :email, :password, :password_confirmation, :remember_me, :avatar, :avatar_cache, :remove_avatar]
+    devise_parameter_sanitizer.permit :sign_up, keys: [:username, :email, :password, :password_confirmation]
+    devise_parameter_sanitizer.permit :sign_in, keys: [:username, :password, :remember_me]
+    devise_parameter_sanitizer.permit(:account_update) do |user_params|
+      user_params.permit( :remove_avatar, :username, :email, :avatar, :avatar_cache)
+    end
   end
 end
