@@ -5,15 +5,16 @@ Rails.application.routes.draw do
   end
 
   resources :answers do
+    #resources :likes, only: [:create, :destroy]
     member do
-      put "like", to: "answers#upvote"
-      put "dislike", to: "answers#downvote"
       put "accept", to: "answers#accept"
+      put "like", to: "answers#like"
+      delete "unlike", to: "answers#unlike"
     end
   end
   
-  devise_for :admins
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+  
   root 'home#index'
 
 

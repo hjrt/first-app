@@ -3,13 +3,13 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
+ <!--    <%= f.label :username %><br /> -->
+    <%= f.text_field :username, autofocus: true, placeholder: "Username" %>
   </div>
-
+  <br />
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+ <!--    <%= f.label :password %><br /> -->
+    <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
@@ -24,30 +24,5 @@
   </div>
 <% end %>
 
-<!--
-<div class="container center">
-<div class="input-group margin-bottom-sm">
-  <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-  <input class="form-control" type="text" placeholder="Email address" style= "width: 200px" autofocus="true">
-</div>
-<div class="input-group">
-  <span class="input-group-addon"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
-  <input class="form-control" type="password" placeholder="Password" style= "width: 200px">
-</div>
-<div class="btn-group open">
-  <span class="btn btn-primary" type="submit"><i class="fa fa-user fa-fw"></i> Log in</span>
-</div>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
- <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-<% end %>
-
-
-button type="submit"???
--->
 <%= render "users/shared/links" %>
 </div>

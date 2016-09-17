@@ -1,0 +1,45 @@
+<h1>Answers</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th>Autor</th>
+      <th>Likes</th>
+      <th>Accepted</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @question.answers.each do |answer| %>
+      <tr>
+        <td><%= answer.content %></td>
+        <td>
+          Submitted <%= time_ago_in_words(answer.created_at) %>
+          by <%= answer.user.username %><br />
+        </td>
+        <td>
+         	<% if current_user != answer.user %>
+        		<% if current_user.likes %>
+	        		<%= link_to "Unlike! (#{answer.likes.count})", unlike_answer_path(answer), method: :delete %>
+	        	<% else %>
+	        		<%= link_to "Like! (#{answer.likes.count})", like_answer_path(answer), method: :put %>
+	        	<% end %>
+        	<% end %>
+        </td>
+        <td>
+          <% if @question.accepted %>
+            <% if answer.accepted %>
+                This answer has been accepted by <%= answer.user.username %>
+            <% end %>
+          <% else %>
+          	<% if current_user == answer.question.user && current_user != answer.user %>
+            	<%= link_to "Accept this answer", accept_answer_path(answer), method: :put %>
+         	 <% end %>
+          <% end %>
+
+        </td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>

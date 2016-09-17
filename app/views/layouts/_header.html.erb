@@ -4,7 +4,6 @@
     <li><%= link_to 'see questions', questions_path %></li>
 
     <% if user_signed_in? %>
-
     <li>
         <div class="menu-item"
             <i class="fa fa-user fa-fw"></i>
@@ -13,7 +12,7 @@
                 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
                     <span class="fa fa-caret-down" title="Toggle dropdown menu"></span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right">
+                <ul class="dropdown-menu dropdown-menu-right" aria-expanded="false">
                     <li><%= link_to 'settings', edit_user_registration_path %></li>
                     <li><%= link_to 'logout', destroy_user_session_path, :method => :delete %></li>
                 </ul>

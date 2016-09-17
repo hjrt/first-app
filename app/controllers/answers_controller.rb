@@ -43,6 +43,44 @@ class AnswersController < ApplicationController
     end
   end
 
+  # def upvote 
+  #   @answer = Answer.find(params[:id])
+  #   @answer.upvote_by current_user
+  #   redirect_to :back
+  # end  
+
+  # def downvote
+  #   @answer = Answer.find(params[:id])
+  #   @answer.downvote_by current_user
+  #   redirect_to :back
+  # end
+
+  def accept
+    @answer=Answer.find(params[:id])
+    @answer.accepted = true
+    question = @answer.question
+    question.accepted = true
+    question.save
+    
+    if @answer.save
+      flash[:notice] = "You accepted the answer"
+    else
+      flash[:notice] = "Try again later"
+    end
+    redirect_to @answer.question
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_answer
+      @answer = Answer.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def answer_params
+      params.require(:answer).permit(:content)
+    end
+end
   # PATCH/PUT /answers/1
   # PATCH/PUT /answers/1.json
   # def update
@@ -66,45 +104,3 @@ class AnswersController < ApplicationController
   #     format.json { head :no_content }
   #   end
   # end
-
-  def upvote 
-    @answer = Answer.find(params[:id])
-    @answer.upvote_by current_user
-    redirect_to :back
-  end  
-
-  def downvote
-    @answer = Answer.find(params[:id])
-    @answer.downvote_by current_user
-    redirect_to :back
-  end
-
-  def accept
-    @answer=Answer.find(params[:id])
-    @answer.accepted = true
-    question = @answer.question
-    question.accepted = true
-    question.save
-    
-    if @answer.save
-      flash[:notice] = "You accepted the answer"
-    else
-      flash[:notice] = "Try again later"
-    end
-    redirect_to @answer.question
-  end
-
-
-
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_answer
-      @answer = Answer.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def answer_params
-      params.require(:answer).permit(:content)
-    end
-end
