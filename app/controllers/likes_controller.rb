@@ -10,7 +10,8 @@ class LikesController < ApplicationController
 	end
 
 	def destroy
-	    like = Like.where({id: params[:answer_id], user: current_user}).last.destroy
+	    Like.where({answer_id: params[:answer_id], user: current_user}).last.destroy
 	    redirect_to :back
 	end
+
 end
