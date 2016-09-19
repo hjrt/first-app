@@ -1,7 +1,9 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  #before_action :user_got_points?, only: [:new, :create]
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :question_user, only: [:destroy, :edit, :update]
+  before_action :user_has_enough_points, only: [:new, :create]
+  before_action :answer_accepted, only: [:edit, :update]
 
   # GET /questions
   # GET /questions.json
@@ -76,5 +78,26 @@ class QuestionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
       params.require(:question).permit(:title, :content)
+    end
+
+    def question_user
+      if current_user != @question.user
+        flash[:danger] = "That's not your question so you can't do that. But hey, you can ask your own, brand new question!"
+        redirect_back(fallback_location: root_path)
+      end
+    end
+
+    def user_has_enough_points
+      unless current_user.points > 0
+        flash[:danger] = "You don't have enough points to ask new question. You need at least 10 points to do it."
+        redirect_back(fallback_location: root_path)
+      end
+    end
+
+    def answer_accepted
+      if @question.accepted
+        flash[:notice] = "This question has an accepted answer, so you can't edit it anymore."
+        redirect_back(fallback_location: root_path)
+      end
     end
 end

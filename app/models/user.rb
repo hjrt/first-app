@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
   attr_accessor :login, :avatar
-    
+
   has_many :questions
   has_many :answers
   has_many :likes
@@ -9,13 +9,12 @@ class User < ApplicationRecord
   #carrierwave
   mount_uploader :avatar, AvatarUploader
 
-  #validates_presence_of   :avatar
   validates_integrity_of  :avatar
   validates_processing_of :avatar
-  #validates :avatar, file_size: { less_than: 1.megabytes }
+  validates :avatar, file_size: { less_than: 1.megabytes }
 
   # devise
-  
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -27,10 +26,10 @@ class User < ApplicationRecord
   :presence => true,
   :uniqueness => {
     :case_sensitive => false
-  } 
+  }
 
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
-     
+
   def email_required?
     false
   end
@@ -72,7 +71,7 @@ class User < ApplicationRecord
 
   # devise omniauth
 
-  def self.from_omniauth(auth)  
+  def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
@@ -80,5 +79,28 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
   end
+
+  # points system
+  
+  def question_points
+    self.points -= 10
+    self.save
+  end
+
+  def like_points
+    self.points += 5
+    self.save
+  end
+
+  def unlike_points
+    self.points -= 5
+    self.save
+  end
+
+  def accept_points
+    self.points += 25
+    self.save
+  end
+
 end
 

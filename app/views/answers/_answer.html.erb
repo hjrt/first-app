@@ -22,16 +22,16 @@
          	<% if current_user != answer.user %>
           <% # zarzadzaj swoim lajkiem # %>
         		<% if answer.has_users_like(current_user) %>
-	        		<%= link_to "Unlike! (#{answer.likes.count})", answer_like_path(answer), method: :delete %>
+	        		<%= link_to "Unlike (#{answer.likes.count})", answer_like_path(answer), method: :delete %>
 	        	<% else %>
-	        		<%= link_to "Like! (#{answer.likes.count})", answer_likes_path(answer), method: :post %>
+	        		<%= link_to "Like (#{answer.likes.count})", answer_likes_path(answer), method: :post %>
 	        	<% end %>
         	<% end %>
         </td>
         <td>
           <% if @question.accepted %>
             <% if answer.accepted %>
-                This answer has been accepted by <%= answer.user.username %>
+                This answer has been accepted by <%= @question.user.username %>
             <% end %>
           <% else %>
           	<% if current_user == answer.question.user && current_user != answer.user %>

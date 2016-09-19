@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  before_action :set_answer, only: [:show, :edit]
   before_action :authenticate_user!, except: [:index, :show]
 
   
@@ -51,6 +51,7 @@ class AnswersController < ApplicationController
     question.save
     
     if @answer.save
+      @answer.user.accept_points
       flash[:notice] = "You accepted the answer"
     else
       flash[:notice] = "Try again later"
