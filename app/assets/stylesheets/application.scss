@@ -17,18 +17,27 @@
 @import "font-awesome";
 
 
-* {
-	font-family: Georgia, serif;
-}
+/* * {
+  font-family: Georgia, serif;
+} */
 
 body {
-	 padding-top: 0px;
+   padding-top: 50px;
+}
+
+/* search */
+.searchbar span{
+    background-color: #FFF;
+}
+
+.searchbar input{
+    border-right-style:none;
 }
 
 /* header */
-.nav.nav-pills.nav-justified {
-    margin: 0;
-}
+// .nav.nav-pills.nav-justified {
+//     margin: 0;
+// }
 
 /* user sign in and sign forms
 *.border-form-div {

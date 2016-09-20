@@ -1,3 +1,5 @@
+<h2>Change your password</h2>
+
 <%= form_for(@user, :url => { :action => "update_password" } ) do |f| %>
   <div class="field">
     <%= f.label :password, "Password" %><br />
@@ -10,8 +12,8 @@
   <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password %>
-  </div>
+  </div><br>
   <div class="action_container">
-    <%= f.submit %>
+    <%= f.submit "Save", class: "btn btn-default" %>
   </div>
 <% end %>

@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :questions
   has_many :answers
   has_many :likes
+  has_and_belongs_to_many :badges
 
   #carrierwave
   mount_uploader :avatar, AvatarUploader

@@ -1,29 +1,49 @@
-  <ul class="nav nav-tabs nav-justified">
-    <li><%= link_to 'home', root_path %></li>
-    <li><%= link_to 'ask a question', new_question_path %></li>
-    <li><%= link_to 'see questions', questions_path %></li>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
 
-    <% if user_signed_in? %>
-    <li>
-        <div class="menu-item"
-            <i class="fa fa-user fa-fw"></i>
-            Logged in as <strong><%= current_user.username %></strong>
-            <div class="btn-group open">
-                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-                    <span class="fa fa-caret-down" title="Toggle dropdown menu"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right" aria-expanded="false">
-                    <li><%= link_to 'settings', edit_user_registration_path %></li>
-                    <li><%= link_to 'change your password', edit_user_path %></li>
-                    <li><%= link_to 'logout', destroy_user_session_path, :method => :delete %></li>
-                </ul>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="container">
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to 'Home', root_path %><span class="sr-only">(current)</span></li>
+            <li><%= link_to 'Ask', new_question_path %></li>
+            <li><%= link_to 'See questions', questions_path %></li>
+          </ul>
+          <form class="navbar-form navbar-left">
+            <div class="input-group searchbar">
+              <input type="text" class="form-control" placeholder="Search">
+                  <span class="input-group-addon">
+                    <a href=""><i class="glyphicon glyphicon-search"></i></a>
+                  </span>
             </div>
-        </div>
-    </li>
-    <% else %>
-        <li><%= link_to 'sign in', new_user_session_path %></li>
-    <% end %>
-  </ul>
-
-
-
+            <!-- <button type="submit" class="btn btn-link">Submit</button> -->
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logged in as <strong><%= current_user.username %></strong><span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'settings', edit_user_registration_path %></li>
+                <li><%= link_to 'change your password', edit_user_path %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to 'logout', destroy_user_session_path, :method => :delete %></li>
+              </ul>
+            </li>
+            <%else %>
+                <li><%= link_to 'sign in', new_user_session_path %></li>
+            <% end %>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </div>
+</nav>

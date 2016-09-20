@@ -3,17 +3,11 @@
   <head>
     <title>App</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-   
- 
-
   </head>
 
   <body>
-
-  <div class="container">
   <%= render 'layouts/header' %>
 
     <% if alert %>
@@ -22,9 +16,12 @@
       <%= alert %>
       </p>
     <% end %>
-    <div class="container-fluid">
-    <%= yield %>
-  </div>
-  </div>
+    <div class="container">
+      <div class="container-fluid">
+        <div class="container-fluid">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

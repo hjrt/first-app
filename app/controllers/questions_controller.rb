@@ -82,14 +82,14 @@ class QuestionsController < ApplicationController
 
     def question_user
       if current_user != @question.user
-        flash[:danger] = "That's not your question so you can't do that. But hey, you can ask your own, brand new question!"
+        flash[:notice] = "That's not your question so you can't do that. But hey, you can ask your own, brand new question!"
         redirect_back(fallback_location: root_path)
       end
     end
 
     def user_has_enough_points
       unless current_user.points > 0
-        flash[:danger] = "You don't have enough points to ask new question. You need at least 10 points to do it."
+        flash[:notice] = "You don't have enough points to ask new question. You need at least 10 points to do it."
         redirect_back(fallback_location: root_path)
       end
     end
