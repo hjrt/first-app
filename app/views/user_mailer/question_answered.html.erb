@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @user.username %>,</h1>
+    <p>
+      your question has received new answer!<br>
+    </p>
+    <p>
+     <%= @question.answer.content %><br>
+    </p>
+    <p>
+      To read answers to your question, just follow this link: <%= link_to @question, question_url(@question) %><br>
+    </p>
+    <p>Have a great day!</p>
+  </body>
+</html>

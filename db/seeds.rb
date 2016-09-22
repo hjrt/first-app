@@ -11,7 +11,7 @@ Answer.create({question: q1, content: 'Package your code into gems', user: u3})
 
 q2 = Question.create({title: 'How to pronounce doggo?', user: u2})
 
-Answer.create({question: q2, content: 'Google it.', user: u1})
+Answer.create({question: q2, content: 'Barf', user: u1})
 Answer.create({question: q2, content: 'BORK', user: u3})
 Answer.create({question: q2, content: 'You are doing me a frighten', user: u3})
 

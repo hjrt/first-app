@@ -1,0 +1,9 @@
+Hi <%= @user.username %>,
+
+your answer has been accepted!
+
+<%= @answer.content %>
+
+To read whole thread, just follow this link: <%= link_to @question, question_url(@question) %>
+
+Have a great day!

@@ -103,5 +103,30 @@ class User < ApplicationRecord
     self.save
   end
 
-end
+  # badges 
 
+  def badge_superstar
+    if self.points >= 1000
+      Badge.where(name: 'Superstar Alpaca')
+      self.save
+      badge.save
+    end
+  end
+
+  def badge_regular
+    if self.points >= 500
+      Badge.where(name: 'Regular Alpaca')
+      self.save
+      badge.save
+    end
+  end
+
+  def badge_disappointing
+    if self.points >= 100
+      Badge.where(name: 'Disappointing Alpaca')
+      self.save
+      badge.save
+    end
+  end
+
+end

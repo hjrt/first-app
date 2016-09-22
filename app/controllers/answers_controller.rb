@@ -1,31 +1,12 @@
 class AnswersController < ApplicationController
-  before_action :set_answer, only: [:show, :edit]
+  before_action :set_answer, only: [:edit]
   before_action :authenticate_user!, except: [:index, :show]
 
   
-  # def current_user
-  # @answer = current_user.answers.find_by(id: params[:id])
-  # redirect_to_answers_path, notice: "you have no permission to delete this answer" if @answer.nil?
-  # end
-
-
-  # GET /answers
-  # GET /answers.json
   def index
     @answers = Answer.all
   end
 
-  # GET /answers/1
-  # GET /answers/1.json
-  # def show
-  # end
-
-  # GET /answers/1/edit
- # def edit
- # end
-
-  # POST /answers
-  # POST /answers.json
   def create
     @answer = Answer.new(answer_params)
     @question = Question.find(params[:question_id])
@@ -34,6 +15,7 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.save
+        UserMailer.delay.question_answered(@answer.question.user, @answer, @answer.question)
         format.html { redirect_to question_path(@question), notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer }
       else
@@ -52,6 +34,7 @@ class AnswersController < ApplicationController
     
     if @answer.save
       @answer.user.accept_points
+      UserMailer.delay.answer_accepted(@answer.user, @answer, @answer.question)
       flash[:notice] = "You accepted the answer"
     else
       flash[:notice] = "Try again later"

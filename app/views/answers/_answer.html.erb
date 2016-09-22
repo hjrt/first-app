@@ -1,9 +1,9 @@
-<h1>Answers</h1>
+<h4>Answers</h4>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Content</th>
+      <th>Answer</th>
       <th>Autor</th>
       <th>Likes</th>
       <th>Accepted</th>
@@ -20,7 +20,6 @@
         </td>
         <td>
          	<% if current_user != answer.user %>
-          <% # zarzadzaj swoim lajkiem # %>
         		<% if answer.has_users_like(current_user) %>
 	        		<%= link_to "Unlike (#{answer.likes.count})", answer_like_path(answer), method: :delete %>
 	        	<% else %>
@@ -38,7 +37,6 @@
             	<%= link_to "Accept this answer", accept_answer_path(answer), method: :put %>
          	 <% end %>
           <% end %>
-
         </td>
         </tr>
       <% end %>

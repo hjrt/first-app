@@ -15,9 +15,14 @@ Rails.application.routes.draw do
   
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" , :registrations => 'registrations'}
 
+  resources :users, only: [:index, :show] 
+
   resource :user, only: [:edit] do
     collection do
       patch 'update_password'
+    end
+    member do
+      get 'profile'
     end
   end
   
