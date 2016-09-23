@@ -4,5 +4,16 @@
 <p>Last active: <%= @user.last_active_at %> </p>
 <p>Points: <%= @user.points %></p>
 <p>Badges:</p>
-<%= @user.badges %>
+<% @user.badges.each.with_index(1) do |badge, i| %>
+	<% if i%3 == 1 %>
+		<div class="row">
+	<% end %>
+	<div class="col-sm-4">
+		<%= image_tag("badges/#{badge.image}.jpeg", size: "50x50") %>
+		<p><%= badge.name %></p>
+	</div>
+	<% if i%3 == 0 || badge.id == @user.badges.last.id %>
+		</div>
+	<% end %>
+<% end %>
 

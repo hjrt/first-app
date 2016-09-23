@@ -18,3 +18,11 @@ Answer.create({question: q2, content: 'You are doing me a frighten', user: u3})
 q3 = Question.create({title: 'Which is worse, ignorance or apathy?', user: u3})
 
 Answer.create({question: q3, content: 'I do not know and I do not care', user: u1})
+
+b1 = Badge.create({name: 'Disappointing Alpaca'})
+b2 = Badge.create({name: 'Regular Alpaca'})
+b3 = Badge.create({name: 'Superstar Alpaca'})
+b4 = Badge.create({name: 'Alpaca'})
+
+u1.badges = [b1, b2, b3, b4] 
+u1.save

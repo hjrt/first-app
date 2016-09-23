@@ -6,14 +6,14 @@ class LikesController < ApplicationController
 	    like.answer = @answer
 	    like.user = current_user
 	    like.save
-      	@answer.user.like_points
+      	@answer.user.manage_points(5)
 	    redirect_back(fallback_location: root_path)
 	end
 
 	def destroy
 		@answer = Answer.find(params[:answer_id])
 		Like.where({answer_id: params[:answer_id], user: current_user}).last.destroy
-		@answer.user.unlike_points
+		@answer.user.manage_points(-5)
 	    redirect_back(fallback_location: root_path)
 	end
 

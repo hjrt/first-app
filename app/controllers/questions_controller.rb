@@ -34,7 +34,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-         @question.user.question_points
+         @question.user.manage_points(-10)
         format.html { redirect_to @question, notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else

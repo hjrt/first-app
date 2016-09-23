@@ -81,52 +81,48 @@ class User < ApplicationRecord
     end
   end
 
+    
   # points system
   
-  def question_points
-    self.points -= 10
-    self.save
-  end
+  # def question_points
+  #   self.points -= 10
+  #   self.save
+  # end
 
-  def like_points
-    self.points += 5
-    self.save
-  end
+  # def like_points
+  #   self.points += 5
+  #   self.save
+  # end
 
-  def unlike_points
-    self.points -= 5
-    self.save
-  end
+  # def unlike_points
+  #   self.points -= 5
+  #   self.save
+  # end
 
-  def accept_points
-    self.points += 25
-    self.save
+  # def accept_points
+  #   self.points += 25
+  #   self.save
+  # end
+
+  def manage_points(points)
+    self.points += points
+    self.points
+
+    add_badges_if_any
   end
 
   # badges 
-
-  def badge_superstar
-    if self.points >= 1000
-      Badge.where(name: 'Superstar Alpaca')
-      self.save
-      badge.save
-    end
-  end
-
-  def badge_regular
-    if self.points >= 500
-      Badge.where(name: 'Regular Alpaca')
-      self.save
-      badge.save
-    end
-  end
-
-  def badge_disappointing
-    if self.points >= 100
-      Badge.where(name: 'Disappointing Alpaca')
-      self.save
-      badge.save
-    end
+  def add_badges_if_any
+      if self.points >= 1000
+        self.badges << Badge.find_by_name('Superstar Alpaca')
+        self.save
+      elsif self.points >= 500
+        self.badges << Badge.find_by_name('Regular Alpaca')
+        self.save
+      elsif self.points >= 100
+        self.badges << Badge.find_by_name('Disappointing Alpaca')
+        self.save
+      end
   end
 
 end

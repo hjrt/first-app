@@ -33,7 +33,7 @@ class AnswersController < ApplicationController
     question.save
     
     if @answer.save
-      @answer.user.accept_points
+      @answer.user.manage_points(25)
       UserMailer.delay.answer_accepted(@answer.user, @answer, @answer.question)
       flash[:notice] = "You accepted the answer"
     else
