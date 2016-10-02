@@ -1,0 +1,10 @@
+<%= form_for @search, :html => {class: "navbar-form navbar-left"} do |f| %>
+  <div class="input-group searchbar">
+    <%= f.text_field :keywords, class: "form-control", placeholder: "Search" %>
+    <span class="input-group-addon">
+   <%= button_tag(:class => "white") do %>
+   <i class="glyphicon glyphicon-search"></i>
+<% end %>
+</span>
+</div>
+<% end %>

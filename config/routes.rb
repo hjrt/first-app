@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :friend_requests
+  
+  resources :searches
+
   resources :questions do
-  	resources :answers, only: [:create, :index]	
+    resources :answers, only: [:create, :index] 
   end
 
   resources :answers do
@@ -26,7 +30,10 @@ Rails.application.routes.draw do
     end
   end
   
-  
+  get 'friends/index'
+
+  get 'friends/destroy'
+
   root 'home#index'
 
 

@@ -1,13 +1,12 @@
 class Answer < ApplicationRecord
 	belongs_to :question
 	belongs_to :user
-	has_many :likes
+	has_many :likes, dependent: :destroy
 	validates :content, presence: true
 	scope :has_users_like_scope, -> (current_user) {likes.where("user_id = ?", current_user)}
-	#acts_as_votable
 
 	# def self.by_accepted
- #  		self.order(accepted: :desc)
+ #   		self.order(accepted: :desc)
  #  	end
 
 	def has_users_like(user)

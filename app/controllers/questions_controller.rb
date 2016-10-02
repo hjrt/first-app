@@ -9,6 +9,9 @@ class QuestionsController < ApplicationController
   # GET /questions.json
   def index
     @questions = Question.all
+    if params[:search]
+      @questions = Question.search(params[:search])
+    end
   end
 
   # GET /questions/1

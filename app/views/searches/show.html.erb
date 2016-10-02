@@ -1,0 +1,12 @@
+<h1>Search Results</h1>
+
+<% @search.questions.each do |question| %>
+	<%= question.title %>
+	<%= truncate(question.content) %>
+<%end%>
+<% @search.answers.each do |answer| %>
+	<%= truncate(answer.content) %>
+<%end%>
+<% @search.users.each do |user| %>
+	<%= user.username %>
+<%end%>

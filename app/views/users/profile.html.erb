@@ -4,5 +4,32 @@
 <p>Last active: <%= @user.last_active_at %> </p>
 <p>Points: <%= @user.points %></p>
 <p>Badges:</p>
-<%= @user.badges %>
+<% @user.badges.each.with_index(1) do |badge, i| %>
+	<% if i%4 == 1 %>
+		<div class="row">
+	<% end %>
+	<div class="col-sm-3">
+		<%= image_tag("badges/#{badge.image}.jpeg", size: "50x50") %>
+		<p><%= badge.name %></p>
+	</div>
+	<% if i%4 == 0 || badge.id == @user.badges.last.id %>
+		</div>
+	<% end %>
+<% end %>
 
+<p>Friends:</p>
+<% if @user.friends.empty? %>
+	<% @user.friends.each.with_index(1) do |friend, i| %>
+		<% if i%4 == 1 %>
+			<div class="row">
+		<% end %>
+		<div class="col-sm-3">
+			<p><%= friend.username %></p>
+		</div>
+		<% if i%4 == 0 || friend.id == @user.friends.last.id %>
+			</div>
+		<% end %>
+	<%end%>
+<% else %>
+No friends to show
+<% end %>

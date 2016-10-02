@@ -6,6 +6,13 @@ class User < ApplicationRecord
   has_many :answers
   has_many :likes
   has_and_belongs_to_many :badges
+  has_many :friend_requests, dependent: :destroy
+  has_many :pending_friends, through: :friend_requests, source: :friend
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
+    has_many :incoming_friend_requests,
+    class_name: 'FriendRequest',
+    source: :friend
 
   #carrierwave
   mount_uploader :avatar, AvatarUploader
@@ -29,6 +36,7 @@ class User < ApplicationRecord
     :case_sensitive => false
   }
 
+  validates_uniqueness_of :username
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 
   def email_required?
@@ -83,27 +91,6 @@ class User < ApplicationRecord
 
     
   # points system
-  
-  # def question_points
-  #   self.points -= 10
-  #   self.save
-  # end
-
-  # def like_points
-  #   self.points += 5
-  #   self.save
-  # end
-
-  # def unlike_points
-  #   self.points -= 5
-  #   self.save
-  # end
-
-  # def accept_points
-  #   self.points += 25
-  #   self.save
-  # end
-
   def manage_points(points)
     self.points += points
     self.points
@@ -124,5 +111,12 @@ class User < ApplicationRecord
         self.save
       end
   end
+  
+# friends
+
+  def remove_friend(friend)
+    current_user.friends.destroy(friend)
+  end
+
 
 end

@@ -3,6 +3,9 @@ class UsersController < ApplicationController
 
   def index 
     @users = User.all.order(points: :desc)
+    if params[:search]
+      @users = User.search(params[:search])
+    end
   end
 
   def show

@@ -1,0 +1,9 @@
+<% if @incoming.any? %>
+  <ul>
+  <% @incoming.each do |fr| %>
+    <li><%= fr.user.username %></li>
+  <% end %>
+  </ul>
+<% else %>
+  <p>You don't have any friend requests</p>
+<% end %>

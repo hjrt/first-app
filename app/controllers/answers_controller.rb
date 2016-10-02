@@ -4,7 +4,10 @@ class AnswersController < ApplicationController
 
   
   def index
-    @answers = Answer.all
+    @answers = Answer.all.order(:accepted)
+    if params[:search]
+      @answers = Answer.search(params[:search])
+    end
   end
 
   def create

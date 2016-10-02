@@ -1,0 +1,12 @@
+<h1>Search Results</h1>
+
+<% @search.questions.each do |question| %>
+	<%=link_to question.title, question %> asked by <%=link_to question.user.username, user_path(question.user) %>
+	<%= truncate(question.content) %>
+<%end%>
+<% @search.answers.each do |answer| %>
+	<%= truncate(answer.content) %> by <%=link_to answer.user.username, user_path(answer.user) %>
+<%end%>
+<% @search.users.each do |user| %>
+	<%=link_to user.username, user_path(user) %>
+<%end%>

@@ -4,19 +4,19 @@
   <thead>
     <tr>
       <th>Answer</th>
-      <th>Autor</th>
+      <th>Author</th>
       <th>Likes</th>
       <th>Accepted</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @question.answers.each do |answer| %>
+    <% @question.answers.order(accepted: :desc).each do |answer| %>
       <tr>
         <td><%= answer.content %></td>
         <td>
           Submitted <%= time_ago_in_words(answer.created_at) %>
-          by <%= answer.user.username %><br />
+          by <%= link_to "#{answer.user.username}", user_path(answer.user) %><br />
         </td>
         <td>
          	<% if current_user != answer.user %>
@@ -30,7 +30,7 @@
         <td>
           <% if @question.accepted %>
             <% if answer.accepted %>
-                This answer has been accepted by <%= @question.user.username %>
+                This answer has been accepted by <%= link_to "#{@question.user.username}", user_path(@question.user) %>
             <% end %>
           <% else %>
           	<% if current_user == answer.question.user && current_user != answer.user %>

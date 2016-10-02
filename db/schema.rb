@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922170303) do
+ActiveRecord::Schema.define(version: 20160926161210) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -52,6 +52,24 @@ ActiveRecord::Schema.define(version: 20160922170303) do
     t.index ["queue"], name: "delayed_jobs_queue"
   end
 
+  create_table "friend_requests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friend_requests_on_friend_id"
+    t.index ["user_id"], name: "index_friend_requests_on_user_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "answer_id"
@@ -67,6 +85,15 @@ ActiveRecord::Schema.define(version: 20160922170303) do
     t.integer  "user_id"
     t.boolean  "accepted",   default: false
     t.index ["accepted"], name: "index_questions_on_accepted"
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "keywords"
+    t.string   "user"
+    t.string   "post"
+    t.string   "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
