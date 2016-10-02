@@ -4,16 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi <%= @user.username %>,</h1>
-    <p>
-      your answer has been accepted!<br>
-    </p>
-    <p>
-     <%= @answer.content %><br>
-    </p>
-    <p>
-      To read whole thread, just follow this link: <%= link_to @question, question_url(@question) %><br>
-    </p>
+    <h3>Hi <%= @user.username %>,</h3>
+    <p>your answer "<%= truncate(@answer.content) %>" has been accepted!</p>
+    <p>To read whole thread, just follow this link: <%= link_to @question.title, question_url(@question) %></p>
     <p>Have a great day!</p>
   </body>
 </html>

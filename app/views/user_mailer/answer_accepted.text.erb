@@ -1,9 +1,5 @@
 Hi <%= @user.username %>,
-
-your answer has been accepted!
-
-<%= @answer.content %>
-
-To read whole thread, just follow this link: <%= link_to @question, question_url(@question) %>
+your answer "<%= truncate(@answer.content) %>" has been accepted!
+To read whole thread, just copy this link and paste it in your browser: <%= question_url(@question) %>
 
 Have a great day!

@@ -1,7 +1,7 @@
 Hi <%= @user.username %>,
-
 your question has received new answer!
+New answer: <%= @answer.content %>
 
-<%= @question.answer.content %>
+To read answers to your question, just copy this link and paste it in your browser: <%= question_url(@question) %>
 
- To read answers to your question, just follow this link: <%= link_to @question, question_url(@question) %>
+Have a great day!

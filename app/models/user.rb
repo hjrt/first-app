@@ -10,9 +10,6 @@ class User < ApplicationRecord
   has_many :pending_friends, through: :friend_requests, source: :friend
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
-    has_many :incoming_friend_requests,
-    class_name: 'FriendRequest',
-    source: :friend
 
   #carrierwave
   mount_uploader :avatar, AvatarUploader
