@@ -1,37 +1,18 @@
-class Search < ApplicationRecord
+class Search
 
-	attr_accessor :search
-
-	def questions
-		@questions = find_questions
-	end
-
-	def answers
-		@answers =  find_answers
-	end
-
-	def users
-		@users = find_users
-	end
-
-	private
-
-	def find_questions
+	def self.find_questions(keywords)
 		questions = Question.order(created_at: :desc)
-		questions = questions.where("title like ? OR content like?", "%#{keywords}%", "%#{keywords}%") if keywords.present?
-		questions
+		questions.where("title like ? OR content like?", "%#{keywords}%", "%#{keywords}%") if keywords.present?
 	end
 
-	def find_answers
+	def self.find_answers(keywords)
 		answers = Answer.order(created_at: :desc)
-		answers = answers.where("content like ?", "%#{keywords}%") if keywords.present?
-		answers
+		answers.where("content like ?", "%#{keywords}%") if keywords.present?
 	end
 
-	def find_users
+	def self.find_users(keywords)
 		users = User.order(:username)
-		users = users.where("username like ?", "%#{keywords}%") if keywords.present?
-		users
+		users.where("username like ?", "%#{keywords}%") if keywords.present?
 	end
 
 

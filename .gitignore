@@ -22,3 +22,6 @@
 
 turbo-goggles.sublime*
 public/uploads
+
+# Ignore application configuration
+/config/application.yml

@@ -1,26 +1,15 @@
 class SearchesController < ApplicationController
 
-	def index
-		@search = Search.create!(allowed_params)
-	end
-
-	def new
-    	@search = Search.new
-	end
-  
-	def create
-		@search = Search.create!(allowed_params)
-		redirect_to @search
-	end
-  
-	def show
-		@search = Search.find(params[:id])
-	end
+  def index
+    @questions = Search.find_questions(params[:search][:keywords])
+    @answers = Search.find_answers(params[:search][:keywords])
+    @users = Search.find_users(params[:search][:keywords])
+  end
   
   private
   
-	def allowed_params
-		params.require(:search).permit!
-	end
+  def allowed_params
+    params.require(:search).permit(:keywords)
+  end
 
 end
