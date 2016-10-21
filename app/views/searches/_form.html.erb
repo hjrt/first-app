@@ -1,5 +1,5 @@
 <%= form_tag searches_path, html: {class: "navbar-form navbar-left"}, method: :get do %>
-       <div class="col-lg-3">
+       <div class="col-lg-3" id="search-form">
             <div class="input-group searchbar">
               <%= text_field_tag "search[keywords]", nil, class: "form-control", placeholder: "Search" %>
                 <span class="input-group-addon">
