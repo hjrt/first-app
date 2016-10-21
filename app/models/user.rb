@@ -6,10 +6,12 @@ class User < ApplicationRecord
   has_many :answers
   has_many :likes
   has_and_belongs_to_many :badges
-  has_many :friend_requests, dependent: :destroy
-  has_many :pending_friends, through: :friend_requests, source: :friend
-  has_many :friendships, dependent: :destroy
-  has_many :friends, through: :friendships
+  has_and_belongs_to_many :friends, 
+              class_name: "User", 
+              join_table: :friendships, 
+              foreign_key: :user_id, 
+              association_foreign_key: :friend_id,
+              uniq: true
 
   #carrierwave
   mount_uploader :avatar, AvatarUploader

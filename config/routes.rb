@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :friend_requests
+  resources :friendships
   
   resources :searches
 
@@ -30,10 +30,6 @@ Rails.application.routes.draw do
     end
   end
   
-  get 'friends/index'
-
-  get 'friends/destroy'
-
   root 'home#index'
 
 
