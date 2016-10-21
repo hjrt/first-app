@@ -18,13 +18,14 @@
 <% end %>
 
 <p>Friends:</p>
-<% if @user.friends.empty? %>
-	<% @user.friends.each.with_index(1) do |friend, i| %>
+<% if !@user.friendships.empty? %>
+	<% @user.friendships.each.with_index(1) do |friend, i| %>
 		<% if i%4 == 1 %>
 			<div class="row">
 		<% end %>
 		<div class="col-sm-3">
-			<p><%= friend.username %></p>
+			<p><%= friendship.friend.username %></p>
+			<p><%= link_to "Unfriend", friendship, method: :delete %>
 		</div>
 		<% if i%4 == 0 || friend.id == @user.friends.last.id %>
 			</div>

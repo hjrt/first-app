@@ -1,21 +1,7 @@
 <p> <%= @user.avatar %></p>
 <h1><%= @user.username %></h1>
-<% if current_user != @user %>
-	<% if current_user.friends.include?(@user) %>
-		<%= link_to 'Unfriend', friends_destroy_path %>
-	<% else %>
-		<% if @user.pending_friends.include?(current_user) %>
-				<%= link_to "Accept", friend_request_path, method: :patch %>
-				<%= link_to "Deny", friend_request_path, method: :delete %>
-		<% else %>
-			<% if current_user.pending_friends.include?(@user) %>
-				<p><%= link_to 'Cancel friend request', friend_request_path, method: :delete %></p>
-			<% else %>
-				<p><%= link_to 'Send friend request', friend_requests_path(friend_id: @user), method: :post %></p>
-			<% end %>
-		<% end %>
-	<% end %>
-<% end %>
+
+<p><%= link_to 'Send friend request', friendships_path(:friend_id => @user), :method => :post %></p>
 <p>Joined: <%= @user.created_at %></p>
 <p>Last active: <%= @user.last_active_at %> </p>
 <p>Points: <%= @user.points %></p>
