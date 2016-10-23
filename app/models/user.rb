@@ -113,19 +113,20 @@ class User < ApplicationRecord
   def manage_points(points)
     self.points += points
     self.points
+    self.save
 
     add_badges_if_any
   end
 
   # badges 
   def add_badges_if_any
-      if self.points >= 1000
+      if self.points >= 1000 && !self.badges.exists?(name:'Superstar Alpaca')
         self.badges << Badge.find_by_name('Superstar Alpaca')
         self.save
-      elsif self.points >= 500
+      elsif self.points >= 500 && !self.badges.exists?(name:'Regular Alpaca')
         self.badges << Badge.find_by_name('Regular Alpaca')
         self.save
-      elsif self.points >= 100
+      elsif self.points >= 100 && !self.badges.exists?(name:'Disappointing Alpaca')
         self.badges << Badge.find_by_name('Disappointing Alpaca')
         self.save
       end
