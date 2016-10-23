@@ -1,34 +1,50 @@
 <p> <%= @user.avatar %></p>
 <h1><%= @user.username %></h1>
-
-<p><%= link_to 'Send friend request', friendships_path(:friend_id => @user), :method => :post %></p>
+<% if current_user != @user %>
+  <% if current_user.friends.include?(@user) %>
+    <%= link_to 'Unfriend', friend_destroy_path(friend: @user) %>
+  <% else %>
+    <% if current_user.requested_friends.include?(@user) %>
+        <%= link_to "Accept", friend_accept_path(friend: @user) %>
+        <%= link_to "Deny", friend_destroy_path(friend: @user), method: :delete %>
+    <% else %>
+      <% if current_user.pending_friends.include?(@user) %>
+        <p><%= link_to 'Cancel friend request', friend_destroy_path(friend: @user), method: :delete %></p>
+      <% else %>
+        <p><%= link_to 'Send friend request', friend_request_path(friend: @user) %></p>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
 <p>Joined: <%= @user.created_at %></p>
 <p>Last active: <%= @user.last_active_at %> </p>
 <p>Points: <%= @user.points %></p>
 <p>Badges:</p>
 <% @user.badges.each.with_index(1) do |badge, i| %>
-	<% if i%3 == 1 %>
-		<div class="row">
-	<% end %>
-	<div class="col-sm-4">
-		<%= image_tag("badges/#{badge.image}.jpeg", size: "50x50") %>
-		<p><%= badge.name %></p>
-	</div>
-	<% if i%3 == 0 || badge.id == @user.badges.last.id %>
-		</div>
-	<% end %>
+  <% if i%3 == 1 %>
+    <div class="row">
+  <% end %>
+  <div class="col-sm-4">
+    <%= image_tag("badges/#{badge.image}.jpeg", size: "50x50") %>
+    <p><%= badge.name %></p>
+  </div>
+  <% if i%3 == 0 || badge.id == @user.badges.last.id %>
+    </div>
+  <% end %>
 <% end %>
-<p>Friends:</p>
-<% @user.friends.each.with_index(1) do |friend, i| %>
-	<% if i%4 == 1 %>
-		<div class="row">
-	<% end %>
-	<div class="col-sm-3">
-		<p><%= friend.username %></p>
-		<p><%= "#{user.friends.count}" %></p>
-		<p> website </p>
-	</div>
-	<% if i%4 == 0 || friend.id == @user.friends.last.id %>
-		</div>
-	<% end %>
-<%end%>
+<p>Friends (<%= "#{@user.friends.count}" %>)</p>
+<% if !@user.friendships.empty? %>
+  <% @user.friendships.each.with_index(1) do |f, i| %>
+    <% if i%4 == 1 %>
+      <div class="row">
+    <% end %>
+    <div class="col-sm-3">
+      <p><%= link_to f.friend.username, user_path(f.friend) %></p>
+    </div>
+    <% if i%4 == 0 || f.friend.id == @user.friendships.last.friend.id %>
+      </div>
+    <% end %>
+  <%end%>
+<%else%>
+<p>No friends to show</p>
+<% end %>

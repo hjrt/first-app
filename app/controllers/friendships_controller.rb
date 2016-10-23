@@ -1,20 +1,25 @@
 class FriendshipsController < ApplicationController
+  before_action :authenticate_user!
 
-  def create
-  @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
-  if @friendship.save
-    flash[:notice] = "Friend request has been sent."
-    redirect_back(fallback_location: root_path)
-  else
-    flash[:notice] = "Unable to sent friend request."
+  def request_friendship
+    friend = User.find(params[:friend])
+    action = Friendship.request(current_user, friend)
     redirect_back(fallback_location: root_path)
   end
 
-  def destroy
-    @friendship = current_user.friendships.find(params[:id])
-    @friendship.destroy
-    flash[:notice] = "Unfriended."
+  def accept_friendship
+    user = current_user
+    friend = User.find(params[:friend])
+    action = Friendship.accept(user, friend)
     redirect_back(fallback_location: root_path)
   end
+
+
+  def destroy_friendship
+    friend = User.find(params[:friend])
+    action = Friendship.destroy(current_user, friend)  
+    redirect_back(fallback_location: root_path)
+  end
+
 
 end

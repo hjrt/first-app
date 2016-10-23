@@ -6,12 +6,31 @@ class User < ApplicationRecord
   has_many :answers
   has_many :likes
   has_and_belongs_to_many :badges
-  has_and_belongs_to_many :friends, 
-              class_name: "User", 
-              join_table: :friendships, 
-              foreign_key: :user_id, 
-              association_foreign_key: :friend_id,
-              uniq: true
+  has_many :friendships, dependent: :destroy
+  has_many :friends, 
+            -> { where(friendships: { status: 'accepted' }).order('name DESC') }, 
+            :through => :friendships
+  has_many :pending_friendships, 
+            -> { where(status: 'pending') }, 
+            class_name: 'Friendship', 
+            foreign_key: 'user_id'
+  has_many :pending_friends, 
+            through: :pending_friendships, 
+            source: :friend
+  has_many :requested_friendships, 
+            -> { where(status: 'requested') }, 
+            class_name: 'Friendship', 
+            foreign_key: 'user_id'
+  has_many :requested_friends, 
+            through: :requested_friendships, 
+            source: :friend
+  has_many :accepted_friendships,
+             -> { where(status: 'accepted') }, 
+             class_name: 'Friendship', 
+             foreign_key: 'user_id'
+  has_many :accepted_friends, 
+            through: :accepted_friendships, 
+            source: :friend
 
   #carrierwave
   mount_uploader :avatar, AvatarUploader
@@ -113,9 +132,12 @@ class User < ApplicationRecord
   
 # friends
 
-  def remove_friend(friend)
-    current_user.friends.destroy(friend)
+  def are_friends?(friend)
+    self.accepted_friends.exists?(friend)
   end
 
+  def are_friedship_invite?(friend)
+    self.pending_friends.exists?(friend)
+  end
 
 end

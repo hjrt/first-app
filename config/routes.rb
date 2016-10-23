@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :friendships
+  # resources :friendships do
+  #   member do
+  #     put :accept
+  #   end
+  # end
   
   resources :searches
 
@@ -31,6 +35,10 @@ Rails.application.routes.draw do
   end
   
   root 'home#index'
+
+  get "friendships/request", to: "friendships#request_friendship", as: :friend_request
+  get "friendships/accept", to: "friendships#accept_friendship", as: :friend_accept
+  delete "friendships/destroy", to: "friendships#destroy_friendship", as: :friend_destroy
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

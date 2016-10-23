@@ -17,20 +17,20 @@
 	<% end %>
 <% end %>
 
-<p>Friends:</p>
+<p>Friends (<%= "#{@user.friends.count}" %>)</p>
 <% if !@user.friendships.empty? %>
-	<% @user.friendships.each.with_index(1) do |friend, i| %>
-		<% if i%4 == 1 %>
-			<div class="row">
-		<% end %>
-		<div class="col-sm-3">
-			<p><%= friendship.friend.username %></p>
-			<p><%= link_to "Unfriend", friendship, method: :delete %>
-		</div>
-		<% if i%4 == 0 || friend.id == @user.friends.last.id %>
-			</div>
-		<% end %>
-	<%end%>
-<% else %>
-No friends to show
+  <% @user.friendships.each.with_index(1) do |f, i| %>
+    <% if i%4 == 1 %>
+      <div class="row">
+    <% end %>
+    <div class="col-sm-3">
+      <p><%= link_to f.friend.username, user_path(f.friend) %></p>
+      <p><%= link_to 'Unfriend', friend_destroy_path(friend: f.friend) %></p>
+    </div>
+    <% if i%4 == 0 || f.friend.id == @user.friendships.last.friend.id %>
+      </div>
+    <% end %>
+  <%end%>
+<%else%>
+<p>No friends to show</p>
 <% end %>
