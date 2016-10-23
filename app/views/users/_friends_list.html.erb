@@ -1,0 +1,24 @@
+<p>Friends (<%= "#{@user.friends.count}" %>)</p>
+<% if !@user.accepted_friendships.empty? %>
+  <% @user.accepted_friendships.each.with_index(1) do |f, i| %>
+    <% if i%4 == 1 %>
+      <div class="row">
+    <% end %>
+    <div class="col-sm-3">
+      <% if @user == current_user %>
+        <p><%= link_to f.friend.username, user_path(f.friend) %>
+        <%= link_to friend_destroy_path(friend: f.friend) do %>
+        <i class="fa fa-user-times" aria-hidden="true"></i>
+        <%end%>
+        </p>
+      <% else %>
+        <p><%= link_to f.friend.username, user_path(f.friend) %></p>
+      <%end%>
+    </div>
+    <% if i%4 == 0 || f.friend.id == @user.accepted_friendships.last.friend.id %>
+      </div>
+    <% end %>
+  <%end%>
+<%else%>
+<p>No friends to show</p>
+<% end %>
