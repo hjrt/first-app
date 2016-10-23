@@ -40,6 +40,7 @@ gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 gem 'file_validators'
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.1'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
+gem 'friendly_id', '~> 5.1'
 
 # gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 # gem 'acts_as_votable', '~> 0.10.0'

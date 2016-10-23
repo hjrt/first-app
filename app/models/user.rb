@@ -103,6 +103,7 @@ class User < ApplicationRecord
       user.provider = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email
+      user.username = auth.info.name
       user.password = Devise.friendly_token[0,20]
     end
   end
@@ -140,4 +141,18 @@ class User < ApplicationRecord
     self.pending_friends.exists?(friend)
   end
 
+# friendly id
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  def slug_candidates
+    [
+      :username,
+      [:username, rand(99)]
+    ]
+  end
+
+  def should_generate_new_friendly_id?
+    username_changed?
+  end
 end

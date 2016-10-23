@@ -15,7 +15,7 @@
       <tr>
         <td><%= answer.content %></td>
         <td>
-          Submitted <%= time_ago_in_words(answer.created_at) %>
+          Submitted <%= time_tag(answer.created_at) %>
           by <%= link_to "#{answer.user.username}", user_path(answer.user) %><br />
         </td>
         <td>
