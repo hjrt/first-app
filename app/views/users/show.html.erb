@@ -16,8 +16,8 @@
     <% end %>
   <% end %>
 <% end %>
-<p>Joined: <%= @user.created_at %></p>
-<p>Last active: <%= @user.last_active_at %> </p>
+<p>Joined: <%= time_tag(@user.created_at) %></p>
+<p>Last active: <%= time_tag(@user.last_active_at) %> </p>
 <p>Points: <%= @user.points %></p>
 <p>Badges:</p>
 <% @user.badges.each.with_index(1) do |badge, i| %>
@@ -33,15 +33,15 @@
   <% end %>
 <% end %>
 <p>Friends (<%= "#{@user.friends.count}" %>)</p>
-<% if !@user.friendships.empty? %>
-  <% @user.friendships.each.with_index(1) do |f, i| %>
+<% if !@user.accepted_friendships.empty? %>
+  <% @user.accepted_friendships.each.with_index(1) do |f, i| %>
     <% if i%4 == 1 %>
       <div class="row">
     <% end %>
     <div class="col-sm-3">
       <p><%= link_to f.friend.username, user_path(f.friend) %></p>
     </div>
-    <% if i%4 == 0 || f.friend.id == @user.friendships.last.friend.id %>
+    <% if i%4 == 0 || f.friend.id == @user.accepted_friendships.last.friend.id %>
       </div>
     <% end %>
   <%end%>
