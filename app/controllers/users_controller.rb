@@ -31,6 +31,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def profile_page_users_posts
+    @user = User.find(params[:user])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def profile_page_users_friends
+    @user = User.find(params[:user])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def profile_page_users_badges
+    @user = User.find(params[:user])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def user_params

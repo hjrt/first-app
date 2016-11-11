@@ -19,10 +19,9 @@
             <li><%= link_to 'Ask', new_question_path %></li>
             <li><%= link_to 'See questions', questions_path %></li>
             <li><%= link_to 'Ranking', users_path %></li>
+            <li><%= render 'searches/form' %></li>
           </ul>
-          <%= render 'searches/form' %>
             <!-- <button type="submit" class="btn btn-link">Submit</button> -->
-          </form>
           <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
             <li class="dropdown">

@@ -1,0 +1,9 @@
+<p class="bold-text">Questions</p>
+<% @user.questions.each do |question| %>
+  <%= question.title %>
+  <%= truncate(question.content) %>
+<%end%>
+<p class="bold-text">Answers</p>
+<% @user.answers.each do |answer| %>
+  <%= truncate(answer.content) %>
+<%end%>        

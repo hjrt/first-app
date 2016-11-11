@@ -52,6 +52,7 @@ group :development, :test do
   gem 'binding_of_caller'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
 end
 
 group :development do

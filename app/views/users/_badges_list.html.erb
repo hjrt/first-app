@@ -1,11 +1,11 @@
-<p>Badges:</p>
+<p class="bold-text">Badges</p>
 <% @user.badges.each.with_index(1) do |badge, i| %>
 	<% if i%4 == 1 %>
 		<div class="row">
 	<% end %>
 	<div class="col-sm-3">
-		<%= image_tag("badges/#{badge.image}.jpeg", size: "50x50") %>
-		<p><%= badge.name %></p>
+		<%= image_tag("badges/#{badge.image}.jpeg", size: "50x50", :class => "badges") %>
+		<p class="profile-usertitle-achievements"><%= badge.name %></p>
 	</div>
 	<% if i%4 == 0 || badge.id == @user.badges.last.id %>
 		</div>

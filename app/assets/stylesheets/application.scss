@@ -16,18 +16,65 @@
 
 @import "font-awesome";
 
-
 /* * {
   font-family: Georgia, serif;
 } */
 
 body {
    padding-top: 50px;
+   position: relative;
 }
+
+@media (max-width: 975px) {
+  .navbar-header {
+    float: none;
+  }
+    
+  .navbar-toggle {
+    display: block;
+  }
+
+  .navbar-collapse {
+    border-top: 1px solid transparent;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  
+  .navbar-collapse.collapse {
+    display: none!important;
+  }
+  
+  .navbar-nav {
+    float: none!important;
+    margin: 7.5px -15px;
+    }
+  
+  .navbar-nav>li {
+    float: none;
+  }
+  
+  .navbar-nav>li>a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .navbar-text {
+    float: none;
+    margin: 15px 0;
+  }
+    /* since 3.1.0 */
+  .navbar-collapse.collapse.in { 
+    display: block!important;
+  }
+  
+  .collapsing {
+    overflow: hidden!important;
+  }
+} 
 
 /* search */
 #search-form{
   padding-top: 8px;
+  width: 17.813em;
 }
 
 .searchbar span{
@@ -42,39 +89,6 @@ body {
     background-color: #FFF;
     border-style: none;
 }
-
-/* header */
-// .nav.nav-pills.nav-justified {
-//     margin: 0;
-// }
-
-/* user sign in and sign forms
-*.border-form-div {
-*  max-width: 300px;
-*  padding: 19px 29px 29px;
-*  margin: 0 auto 20px;
-*  background-color: #fff;
-*  border: 1px solid #e5e5e5;
-*  -webkit-border-radius: 5px;
-*     -moz-border-radius: 5px;
-*          border-radius: 5px;
-*  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-*     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-*          box-shadow: 0 1px 2px rgba(0,0,0,.05);
-*}
-*.border-form-div .form-signin-heading,
-*.border-form-div .checkbox {
-*  margin-bottom: 10px;
-*}
-*.border-form-div input[type="text"],
-*.border-form-div input[type="email"],
-*.border-form-div input[type="password"] {
-*  font-size: 16px;
-*  height: auto;
-*  margin-bottom: 15px;
-*  padding: 7px 9px;
-*}
-*/
 
 /*user sign in and sign forms v. 2*/
 
@@ -92,6 +106,15 @@ body {
 		    box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
 
+/* font titles and stuff */
+.bold-text {
+  text-transform: uppercase;
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
 
 
 /* errors */
@@ -135,4 +158,112 @@ body {
   url('../assets/glyphicons-halflings-regular.woff') format('woff'),
   url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
   url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+/* profile container */
+.profile {
+  margin: 20px 0;
+}
+
+/* profile sidebar */
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-username {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-achievements {
+  text-transform: uppercase;
+  color: grey;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userfriendshipsbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+    
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: black;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: pink;
+  color: black;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: black;
+  background-color: lightgrey;
+
+}
+
+/* profile content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 60px;
+}
+
+/* badges */
+.badges {
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
 }

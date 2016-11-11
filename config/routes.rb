@@ -23,7 +23,13 @@ Rails.application.routes.draw do
   
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" , :registrations => 'registrations'}
 
-  resources :users, only: [:index, :show] 
+  resources :users, only: [:index, :show] do
+    member do
+      get 'profile_page_users_posts'
+      get 'profile_page_users_friends'
+      get 'profile_page_users_badges'
+    end
+  end
 
   resource :user, only: [:edit] do
     collection do

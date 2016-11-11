@@ -1,0 +1,61 @@
+
+<div class="container">
+    <div class="row profile">
+    <div class="col-md-3">
+      <div class="profile-sidebar">
+        <div class="profile-userpic">
+          <%= @user.avatar %>
+        </div>
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-username">
+            <%= @user.username %>
+          </div>
+          <div class="profile-usertitle-achievements">
+            <%= pluralize(@user.points, "point") %><br>
+            <%= pluralize(@user.badges.size, "badge") %>
+          </div>
+        </div>
+        <!-- friendships buttons -->
+        <% if current_user != @user %>
+          <div class="profile-userfriendshipsbuttons">
+          <% if current_user.friends.include?(@user) %>
+            <%= link_to 'Unfriend', friend_destroy_path(friend: @user), :class => "btn btn-danger btn-sm" %>
+          <% else %>
+            <% if current_user.requested_friends.include?(@user) %>
+              <%= link_to "Accept", friend_accept_path(friend: @user), :class => "btn btn-primary btn-sm" %>
+              <%= link_to "Deny", friend_destroy_path(friend: @user), method: :delete, :class => "btn btn-danger btn-sm" %>
+            <% else %>
+              <% if current_user.pending_friends.include?(@user) %>
+                <%= link_to 'Cancel friend request', friend_destroy_path(friend: @user), method: :delete, :class => "btn btn-danger btn-sm" %>
+              <% else %>
+                  <%= link_to 'Send friend request', friend_request_path(friend: @user.id), :class => "btn btn-info btn-sm" %>
+              <% end %>
+            <% end %>
+          <% end %>
+          </div>
+        <% end %>
+        <div class="profile-usermenu">
+          <ul class="nav">
+            <li class="active">  
+            <%= link_to '<i class="glyphicon glyphicon-home"></i> Posts'.html_safe, {:controller => "users", :action => "profile_page_users_posts", :user => @user.id}, :remote => true %>
+            </li>
+            <li>
+              <%= link_to "<i class='glyphicon glyphicon-user'></i> Friends".html_safe, {:controller => "users", :action => "profile_page_users_friends", :user => @user.id}, :remote => true %>
+            </li>
+            <li>
+              <%= link_to "<i class='glyphicon glyphicon-user'></i> Badges".html_safe, {:controller => "users", :action => "profile_page_users_badges", :user => @user.id}, :remote => true %>
+            </li>
+            <li>
+              <a href="#">
+              <i class="glyphicon glyphicon-flag"></i>
+              Help </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9" id="profile-info">
+            <div class="profile-content"></div>
+    </div>
+  </div>
+</div>

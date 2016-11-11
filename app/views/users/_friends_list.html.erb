@@ -1,4 +1,4 @@
-<p>Friends <span class="badge"><%= "#{@user.friends.count}" %></span></p>
+<p class="bold-text">Friends <span class="badge"><%= "#{@user.friends.count}" %></span></p>
 <% if !@user.accepted_friendships.empty? %>
   <% @user.accepted_friendships.each.with_index(1) do |f, i| %>
     <% if i%4 == 1 %>
