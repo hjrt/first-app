@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  respond_to :js
 
   def index 
     @users = User.all.order(points: :desc)
@@ -33,23 +34,30 @@ class UsersController < ApplicationController
 
   def profile_page_users_posts
     @user = User.find(params[:user])
-    respond_to do |format|
-      format.js
-    end
   end
 
   def profile_page_users_friends
     @user = User.find(params[:user])
-    respond_to do |format|
-      format.js
-    end
   end
 
   def profile_page_users_badges
     @user = User.find(params[:user])
-    respond_to do |format|
-      format.js
-    end
+  end
+
+  def sort_questions_by_newest
+    @user = User.find(params[:user])
+  end
+
+  def sort_questions_by_accepted
+    @user = User.find(params[:user])
+  end
+
+  def sort_answers_by_newest
+    @user = User.find(params[:user])
+  end
+
+  def sort_answers_by_likes
+    @user = User.find(params[:user])
   end
 
   private

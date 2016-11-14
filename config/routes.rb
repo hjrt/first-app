@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :searches
 
   resources :questions do
-    resources :answers, only: [:create, :index] 
+    resources :answers, only: [:create, :index]
   end
 
   resources :answers do
@@ -28,6 +28,10 @@ Rails.application.routes.draw do
       get 'profile_page_users_posts'
       get 'profile_page_users_friends'
       get 'profile_page_users_badges'
+      get 'sort_questions_by_newest'
+      get 'sort_questions_by_accepted'
+      get 'sort_answers_by_newest'
+      get 'sort_answers_by_likes'
     end
   end
 

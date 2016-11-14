@@ -1,0 +1,15 @@
+<table>
+  <tbody>
+      <% @user.questions.order(accepted: :desc, created_at: :asc).each do |question| %>
+      <tr>
+        <td>
+         <% if question.accepted %>
+            <div class="btn-green"><%= question.answers.count %></td>
+          <% else %>
+            <div class="btn-gray"><%= question.answers.count %></td>
+          <% end %>
+          <td><%= link_to question.title, question_path(question) %></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

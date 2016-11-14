@@ -12,4 +12,11 @@ class Answer < ApplicationRecord
 	def has_users_like(user)
 		self.likes.where({user: user}).any?
 	end
+
+	def manage_likes_number(number)
+    self.likes_number += number
+    self.likes_number
+    self.save
+  end
+
 end

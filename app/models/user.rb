@@ -5,6 +5,9 @@ class User < ApplicationRecord
   has_many :questions
   has_many :answers
   has_many :likes
+  has_many :received_likes,
+            through: :answers,
+            source: :likes
   has_and_belongs_to_many :badges
   has_many :friendships, dependent: :destroy
   has_many :friends, 

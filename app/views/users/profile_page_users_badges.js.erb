@@ -1,2 +1,4 @@
 $('.profile-content').empty();
 $('.profile-content').append("<%= j render 'users/badges_list' %>");
+$('li.usermenu-active').removeClass('usermenu-active');
+$('#badges').addClass('usermenu-active');

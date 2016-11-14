@@ -110,12 +110,20 @@ body {
 .bold-text {
   text-transform: uppercase;
   color: black;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   margin-bottom: 10px;
   margin-top: 10px;
 }
 
+.bold-text span {
+  color: lightgrey;
+}
+
+.cos {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
 
 /* errors */
 #error_explanation h2 {
@@ -244,11 +252,11 @@ body {
   color: black;
 }
 
-.profile-usermenu ul li.active {
+.profile-usermenu ul li.usermenu-active {
   border-bottom: none;
 }
 
-.profile-usermenu ul li.active a {
+.profile-usermenu ul li.usermenu-active a {
   color: black;
   background-color: lightgrey;
 
@@ -261,9 +269,114 @@ body {
   min-height: 60px;
 }
 
+/* button-like for post_list.html.erb */
+.btn-green {
+  color: #f8f8f8;
+  background-color: #4BAE4F;
+  border-color: #449d47;
+  border-radius: 3px;
+  line-height: 1.5;
+  text-align: center;
+  height: 25px;
+  width: 25px;
+  padding-top: 2px;
+  padding-left: 1px;
+  margin: 5px 17px 5px 5px;
+}
+.btn-big-green {
+  color: #f8f8f8;
+  background-color: #4BAE4F;
+  border-color: #449d47;
+  border-radius: 3px;
+  line-height: 0.8;
+  text-align: center;
+  height: 50px;
+  width: 50px;
+  padding-top: 7px;
+  padding-left: 1px;
+  margin: 10px;
+  font-size: 22px;
+}
+.btn-big-green span {
+  font-size: 12px;
+}
+.btn-gray {
+  color: #9D9D9D;
+  background-color: transparent;
+  border-color: #9D9D9D;
+  border-radius: 3px;
+  border-width: 1px;
+  border-style: solid;
+  line-height: 1.5;
+  text-align: center;
+  height: 25px;
+  width: 25px;
+  padding-top: 2px;
+  padding-left: 1px;
+  margin: 5px 5px 5px 5px;
+}
+
+.btn-big-gray {
+  color: #9D9D9D;
+  background-color: transparent;
+  border-color: #9D9D9D;
+  border-radius: 3px;
+  border-width: 1px;
+  border-style: solid;
+  line-height: 0.8;
+  text-align: center;
+  height: 50px;
+  width: 50px;
+  padding-top: 7px;
+  padding-left: 1px;
+  margin: 10px;
+  font-size: 22px;
+}
+.btn-big-gray span {
+  font-size: 12px;
+}
+
 /* badges */
 .badges {
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border-radius: 50px;
+}
+/* cards */
+.card {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.card {
+  margin-top: 10px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background-clip: padding-box;
+}
+.card span.card-title {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+.card .card-content {
+  padding: 16px 16px 16px 6px;
+  border-radius: 0 0 2px 2px;
+  background-clip: padding-box;
+  box-sizing: border-box;
+}
+.card .card-content p {
+  margin: 0;
+  color: inherit;
+}
+.card .card-content span.card-title {
+  line-height: 48px;
+}
+.card .card-action {
+  border-top: 1px solid rgba(160, 160, 160, 0.2);
+  padding: 2px 10px 0px 0px;
+  text-align: right;
+}
+.card .card-action p {
+  color:grey;
+  font-size: 12px;
 }

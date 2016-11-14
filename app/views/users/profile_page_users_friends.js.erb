@@ -1,2 +1,4 @@
 $('.profile-content').empty();
 $('.profile-content').append("<%= j render 'users/friends_list' %>");
+$('li.usermenu-active').removeClass('usermenu-active');
+$('#friends').addClass('usermenu-active');

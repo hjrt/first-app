@@ -1,6 +1,5 @@
-
 <div class="container">
-    <div class="row profile">
+  <div class="row profile">
     <div class="col-md-3">
       <div class="profile-sidebar">
         <div class="profile-userpic">
@@ -36,26 +35,21 @@
         <% end %>
         <div class="profile-usermenu">
           <ul class="nav">
-            <li class="active">  
-            <%= link_to '<i class="glyphicon glyphicon-home"></i> Posts'.html_safe, {:controller => "users", :action => "profile_page_users_posts", :user => @user.id}, :remote => true %>
+            <li id="posts">  
+            <%= link_to '<i class="fa fa-comments"></i> Posts'.html_safe, {:controller => "users", :action => "profile_page_users_posts", :user => @user.id}, :remote => true %>
             </li>
-            <li>
+            <li id="friends">
               <%= link_to "<i class='glyphicon glyphicon-user'></i> Friends".html_safe, {:controller => "users", :action => "profile_page_users_friends", :user => @user.id}, :remote => true %>
             </li>
-            <li>
-              <%= link_to "<i class='glyphicon glyphicon-user'></i> Badges".html_safe, {:controller => "users", :action => "profile_page_users_badges", :user => @user.id}, :remote => true %>
-            </li>
-            <li>
-              <a href="#">
-              <i class="glyphicon glyphicon-flag"></i>
-              Help </a>
+            <li id="badges">
+              <%= link_to "<i class='fa fa-star'></i> Badges".html_safe, {:controller => "users", :action => "profile_page_users_badges", :user => @user.id}, :remote => true %>
             </li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="col-md-9" id="profile-info">
-            <div class="profile-content"></div>
+    <div class="col-md-8" id="profile-info">
+      <div class="profile-content"></div>
     </div>
   </div>
 </div>

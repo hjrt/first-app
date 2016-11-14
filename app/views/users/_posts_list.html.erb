@@ -1,9 +1,51 @@
-<p class="bold-text">Questions</p>
-<% @user.questions.each do |question| %>
-  <%= question.title %>
-  <%= truncate(question.content) %>
-<%end%>
-<p class="bold-text">Answers</p>
-<% @user.answers.each do |answer| %>
-  <%= truncate(answer.content) %>
-<%end%>        
+<div class="row">
+  <div class="col-md-3">
+    <p class="bold-text">Questions <span>(<%= @user.questions.count %>)</span></p></div>
+      <div class ="col-md-7 text-right cos">
+        <%= link_to 'newest', {:controller => "users", :action => "sort_questions_by_newest", :user => @user.id}, :remote => true %>
+        <%= link_to 'accepted', {:controller => "users", :action => "sort_questions_by_accepted", :user => @user.id}, :remote => true %>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 questions"> 
+    <table>
+      <tbody>
+        <% @user.questions.each do |question| %>
+          <tr>
+          <td>
+          <% if question.accepted %>
+            <div class="btn-green"><%= question.answers.count %></td>
+          <% else %>
+            <div class="btn-gray"><%= question.answers.count %></td>
+          <% end %>
+          <td><%= link_to question.title, question_path(question) %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <p class="bold-text">Answers <span>(<%= @user.answers.count %>)</span></p></div>
+      <div class ="col-md-7 text-right cos">
+        <%= link_to 'newest', {:controller => "users", :action => "sort_answers_by_newest", :user => @user.id}, :remote => true %>
+        <%= link_to 'likes', {:controller => "users", :action => "sort_answers_by_likes", :user => @user.id}, :remote => true %>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 answers"> 
+    <table>
+      <tbody>
+        <% @user.answers.each do |answer| %>
+          <tr>
+          <td><div class="btn-gray"><%= answer.likes.count %></td>
+          <td><%= link_to truncate(answer.content), question_path(answer) %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>

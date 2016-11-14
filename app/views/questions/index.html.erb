@@ -1,38 +1,63 @@
 <p id="notice"><%= notice %></p>
-<h1>Questions</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <% @questions.each do |question| %>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Answers</th>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
+          <div class="row">
+            <!-- Card Projects -->
+            <div class="col-md-11">
+              <div class="card">
+                <div class="card-content">
 
-  <tbody>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= question.answers.count %></td>
-        <td><%=link_to question.title, question %></td>
-        <td><%= truncate(question.content, length: 20) %></td>
-        <!-- <td><%= link_to 'Show', question %></td> -->
-        <% if current_user == question.user %>
-            <% unless question.accepted %>
-                <td><%= link_to 'Edit', edit_question_path(question) %>
-                <%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% else %>
-              <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
-        <% else %>
-          <td></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                    <div class ="row">
+                      <div class="col-md-2">
+                        <% if question.accepted %>
+                          <% if question.answers.count > 1 || question.answers.count == 0 %>
+                            <div class="btn-big-green"><%= question.answers.count %> <span>answers</span></div>
+                          <% else %>
+                            <div class="btn-big-green"><%= question.answers.count %> <span>answer</span></div>
+                          <% end %>
+                        <% else %>
+                          <% if question.answers.count > 1 || question.answers.count == 0 %>
+                            <div class="btn-big-gray"><%= question.answers.count %> <span>answers</span></div>
+                          <%else%>
+                            <div class="btn-big-gray"><%= question.answers.count %> <span>answer</span></div>
+                          <% end %>
+                        <% end %>
+                      </div>
+                      <div class="col-md-9">
+                        <p><%=link_to question.title, question %></p>
+                      </div>
+                      <% if current_user == question.user %>
+                        <div class= "col-md-1 text-right">
+                          <div class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-ellipsis-v"></span></a>
+                            <ul class="dropdown-menu">
+                            <% unless question.accepted %>
+                              <li><%= link_to 'Edit', edit_question_path(question) %></li>
+                              <%end%>
+                              <li><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></li>
 
-<br>
+                        </div></div>
+                      <%end%>
+                    </div>
 
-<%= link_to 'New Question', new_question_path %>
+                </div>
+                <div class="card-action">
+                  <p>asked <%= time_tag(question.created_at) %> by <%= link_to question.user.username, user_path(question.user) %></p>
+                </div>
+              </div>
+            </div>
+
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-4 card">
+      <p class="bold-text">Latest questions</p>
+      <% @questions.last(5).reverse.each do |question| %>
+        <p><%= link_to question.title, question_path(question) %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

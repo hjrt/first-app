@@ -1,0 +1,10 @@
+<table>
+  <tbody>
+      <% @user.answers.order(likes_number: :desc, created_at: :asc).each do |answer| %>
+      	<tr>
+      	<td><div class="btn-gray"><%= answer.likes.count %></td>
+        <td><%= link_to truncate(answer.content), question_path(answer.question) %></td>
+      <%end%>
+      </tr>
+  </tbody>
+</table>
