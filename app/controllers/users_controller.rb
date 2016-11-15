@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   respond_to :js
 
   def index 
-    @users = User.all.order(points: :desc)
+    @users = User.all
     if params[:search]
       @users = User.search(params[:search])
     end

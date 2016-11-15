@@ -4,9 +4,9 @@
       <tr>
         <td>
          <% if question.accepted %>
-            <div class="btn-green"><%= question.answers.count %></td>
+            <div class="btn-green"><%= question.answers.count %></div></td>
           <% else %>
-            <div class="btn-gray"><%= question.answers.count %></td>
+            <div class="btn-gray"><%= question.answers.count %></div></td>
           <% end %>
           <td><%= link_to question.title, question_path(question) %></td>
       </tr>

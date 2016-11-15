@@ -281,7 +281,7 @@ body {
   width: 25px;
   padding-top: 2px;
   padding-left: 1px;
-  margin: 5px 17px 5px 5px;
+  margin: 5px 10px 5px 5px;
 }
 .btn-big-green {
   color: #f8f8f8;
@@ -313,7 +313,7 @@ body {
   width: 25px;
   padding-top: 2px;
   padding-left: 1px;
-  margin: 5px 5px 5px 5px;
+  margin: 5px 10px 5px 5px;
 }
 
 .btn-big-gray {
@@ -379,4 +379,14 @@ body {
 .card .card-action p {
   color:grey;
   font-size: 12px;
+}
+
+/* ranking */
+.ranking {
+  position:center;
+
+}
+.center-block {
+  float: none !important;
+  margin-top: 20px;
 }

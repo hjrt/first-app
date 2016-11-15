@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     end
   end
   
-  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" , :registrations => 'registrations'}
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" , :registrations => 'registrations', :sessions => 'sessions'}
 
   resources :users, only: [:index, :show] do
     member do
@@ -49,7 +49,6 @@ Rails.application.routes.draw do
   get "friendships/request", to: "friendships#request_friendship", as: :friend_request
   get "friendships/accept", to: "friendships#accept_friendship", as: :friend_accept
   delete "friendships/destroy", to: "friendships#destroy_friendship", as: :friend_destroy
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
