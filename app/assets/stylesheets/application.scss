@@ -401,6 +401,16 @@ body {
   margin-left:10px;
 }
 
-.modal-button {
+/* button in modal and sign up/sign in forms */
+.button-margin {
   margin: 8px 0px;
+}
+
+/* sign in form - not modal and sing up form */
+
+.col-centered {
+  float: none;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 50px;
 }

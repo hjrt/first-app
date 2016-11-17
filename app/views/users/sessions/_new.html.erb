@@ -4,39 +4,37 @@
 </div>
 <div class="modal-body">
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-12">
       <div class="well modal-well-size">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <!--    <%= f.label :username %><br /> -->
-      <%= f.text_field :username, autofocus: true, placeholder: "Username" %>
-    </div>
-    <br />
-    <div class="field">
-    <!--    <%= f.label :password %><br /> -->
-      <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
-    </div>
-    <% if devise_mapping.rememberable? -%>
-      <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.text_field :username, autofocus: true, placeholder: "Username" %>
+          </div>
+          <br />
+          <div class="field">
+            <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
+          </div>
+          <% if devise_mapping.rememberable? -%>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+          <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+          <div class="actions">
+            <%= f.submit "Sign in", :class => "btn btn-success btn-block button-margin" %>
+          </div>
+          <%= link_to "Sign up", new_registration_path(resource_name), :class =>"btn btn-info btn-block button-margin"%>
+          <%- if devise_mapping.omniauthable? %>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+              <%= link_to omniauth_authorize_path(resource_name, provider), :class=>"btn btn-block btn-social btn-github" do %>
+                <span class="fa fa-github"></span>
+                Sign in with Github
+              <%end%>
+            <% end -%>
+          <% end -%> 
+        <% end %>
       </div>
-    <% end %>
-    <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-    <%- resource_class.omniauth_providers.each do |provider| %>
-   <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
-  <% end -%>
-    
-      <div class="actions">
-        <%= f.submit "Sign in", :class => "btn btn-success btn-block modal-button" %>
-      </div>
-  <%= link_to "Sign up", new_registration_path(resource_name), :class =>"btn btn-info btn-block"%>
-    
-  <% end %>
-</div>
-</div>
-<div class="col-xs-6">
-
-                  </div>
-</div>
+    </div>
+  </div>
 </div>
