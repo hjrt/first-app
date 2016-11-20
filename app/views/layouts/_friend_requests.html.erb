@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-12 text-center">
+    <p>Friend requests <span class="badge"><%= "#{current_user.requested_friendships.count}"%></span></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <% if !current_user.requested_friendships.empty? %>
+      <% current_user.requested_friendships.each do |request| %>
+        <div class="col-md-6">
+          <p><%= link_to request.friend.username, user_path(request.friend) %>
+        </div>
+        <div class="col-md-1">
+          <%= link_to friend_accept_path(friend: request.friend.id), remote: :true do %>
+            <i class="fa fa-check"></i>
+          <% end %>
+        </div>
+        <div class="col-md-1">
+          <%= link_to friend_destroy_path(friend: request.friend.id), remote: :true ,method: :delete do %>
+            <i class="fa fa-times"></i>
+          <% end %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col-md-12 text-center">
+        <p>You don't have any friend requests</p>
+      </div>
+    <%end%>
+  </div>
+</div>

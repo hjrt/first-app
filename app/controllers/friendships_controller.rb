@@ -11,14 +11,20 @@ class FriendshipsController < ApplicationController
     user = current_user
     friend = User.find(params[:friend])
     action = Friendship.accept(user, friend)
-    redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.js
+      format.html {redirect_back(fallback_location: root_path)}
+    end
   end
 
 
   def destroy_friendship
     friend = User.find(params[:friend])
     action = Friendship.destroy(current_user, friend)  
-    redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.js
+      format.html {redirect_back(fallback_location: root_path)}
+    end
   end
 
 

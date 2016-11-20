@@ -18,14 +18,14 @@
         <% if current_user != @user %>
           <div class="profile-userfriendshipsbuttons">
           <% if current_user.friends.include?(@user) %>
-            <%= link_to 'Unfriend', friend_destroy_path(friend: @user), :class => "btn btn-danger btn-sm" %>
+            <%= link_to 'Unfriend', friend_destroy_path(friend: @user.id), method: :delete, :class => "btn btn-danger btn-sm" %>
           <% else %>
             <% if current_user.requested_friends.include?(@user) %>
-              <%= link_to "Accept", friend_accept_path(friend: @user), :class => "btn btn-primary btn-sm" %>
-              <%= link_to "Deny", friend_destroy_path(friend: @user), method: :delete, :class => "btn btn-danger btn-sm" %>
+              <%= link_to "Accept", friend_accept_path(friend: @user.id), :class => "btn btn-primary btn-sm" %>
+              <%= link_to "Deny", friend_destroy_path(friend: @user.id), method: :delete, :class => "btn btn-danger btn-sm" %>
             <% else %>
               <% if current_user.pending_friends.include?(@user) %>
-                <%= link_to 'Cancel friend request', friend_destroy_path(friend: @user), method: :delete, :class => "btn btn-danger btn-sm" %>
+                <%= link_to 'Cancel friend request', friend_destroy_path(friend: @user.id), method: :delete, :class => "btn btn-danger btn-sm" %>
               <% else %>
                   <%= link_to 'Send friend request', friend_request_path(friend: @user.id), :class => "btn btn-info btn-sm" %>
               <% end %>
