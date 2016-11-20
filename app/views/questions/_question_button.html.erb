@@ -1,0 +1,13 @@
+                  <% if @question.accepted %>
+                    <% if @question.answers.count > 1 || @question.answers.count == 0 %>
+                      <div class="btn-big-green"><%= @question.answers.count %> <span>answers</span></div>
+                    <% else %>
+                      <div class="btn-big-green"><%= @question.answers.count %> <span>answer</span></div>
+                    <% end %>
+                   <% else %>
+                    <% if @question.answers.count > 1 || @question.answers.count == 0 %>
+                      <div class="btn-big-gray"><%= @question.answers.count %> <span>answers</span></div>
+                    <%else%>
+                      <div class="btn-big-gray"><%= @question.answers.count %> <span>answer</span></div>
+                    <% end %>
+                  <% end %>

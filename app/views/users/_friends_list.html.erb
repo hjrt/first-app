@@ -7,7 +7,7 @@
     <div class="col-sm-3">
       <% if @user == current_user %>
         <p><%= link_to f.friend.username, user_path(f.friend) %>
-        <%= link_to friend_destroy_path(friend: f.friend) do %>
+        <%= link_to friend_destroy_path(friend: f.friend.id) do %>
         <i class="fa fa-user-times" aria-hidden="true"></i>
         <%end%>
         </p>

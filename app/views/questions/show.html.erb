@@ -8,6 +8,7 @@
             <div class="card-content">
               <div class ="row">
                 <div class="col-md-1">
+                  <div id="question-button">
                   <% if @question.accepted %>
                     <% if @question.answers.count > 1 || @question.answers.count == 0 %>
                       <div class="btn-big-green"><%= @question.answers.count %> <span>answers</span></div>
@@ -21,6 +22,7 @@
                       <div class="btn-big-gray"><%= @question.answers.count %> <span>answer</span></div>
                     <% end %>
                   <% end %>
+                  </div>
                 </div>
                 <div class="col-md-10">
                   <div class="col-md-12">
@@ -49,10 +51,10 @@
               <p>asked <%= time_tag(@question.created_at) %> by <%= link_to @question.user.username, user_path(@question.user) %></p>
             </div>
           </div>
+          <%= render 'answers/answer' %>
           <% unless @question.accepted %>
             <%= render 'answers/form', answer: @answer %>
           <% end %>
-          <%= render 'answers/answer' %>
         </div>
       </div>
     </div>

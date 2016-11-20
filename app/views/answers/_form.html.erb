@@ -1,4 +1,11 @@
-<%= form_for(answer, url: question_answers_path(@question), html: {method: "post"}) do |f| %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <h4>Your answer</h4>
+    </div>
+  </div>
+</div>
+<%= form_for(answer, url: question_answers_path(@question), html: {method: "post", remote: true}) do |f| %>
   <% if answer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
@@ -9,11 +16,19 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :content %>
-    <%= f.text_area :content, required: true %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-6 field">
+        <%= f.text_area :content, required: true, class: "form-control", rows: "7" %>
+      </div>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit "Save", class: "btn btn-default"  %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-6 actions">
+        <%= f.submit "Save", class: "btn btn-default"  %>
+      </div>
+    </div>
   </div>
+  <br />
 <% end %>

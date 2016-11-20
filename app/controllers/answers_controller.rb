@@ -21,6 +21,7 @@ class AnswersController < ApplicationController
         UserMailer.delay.question_answered(@answer.question.user, @answer, @answer.question)
         format.html { redirect_to question_path(@question), notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer }
+        format.js
       else
         format.html { redirect_to question_path(@question) }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
