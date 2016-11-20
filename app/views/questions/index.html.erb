@@ -3,54 +3,49 @@
   <div class="row">
     <div class="col-md-8">
       <% @questions.each do |question| %>
-
           <div class="row">
-            <!-- Card Projects -->
             <div class="col-md-11">
               <div class="card">
                 <div class="card-content">
-
-                    <div class ="row">
-                      <div class="col-md-2">
-                        <% if question.accepted %>
-                          <% if question.answers.count > 1 || question.answers.count == 0 %>
-                            <div class="btn-big-green"><%= question.answers.count %> <span>answers</span></div>
-                          <% else %>
-                            <div class="btn-big-green"><%= question.answers.count %> <span>answer</span></div>
-                          <% end %>
+                  <div class ="row">
+                    <div class="col-md-2">
+                      <% if question.accepted %>
+                        <% if question.answers.count > 1 || question.answers.count == 0 %>
+                          <div class="btn-big-green"><%= question.answers.count %> <span>answers</span></div>
                         <% else %>
-                          <% if question.answers.count > 1 || question.answers.count == 0 %>
-                            <div class="btn-big-gray"><%= question.answers.count %> <span>answers</span></div>
-                          <%else%>
-                            <div class="btn-big-gray"><%= question.answers.count %> <span>answer</span></div>
-                          <% end %>
+                          <div class="btn-big-green"><%= question.answers.count %> <span>answer</span></div>
                         <% end %>
-                      </div>
-                      <div class="col-md-9">
-                        <p><%=link_to question.title, question %></p>
-                      </div>
-                      <% if current_user == question.user %>
-                        <div class= "col-md-1 text-right">
-                          <div class="dropdown">
+                      <% else %>
+                        <% if question.answers.count > 1 || question.answers.count == 0 %>
+                          <div class="btn-big-gray"><%= question.answers.count %> <span>answers</span></div>
+                        <%else%>
+                          <div class="btn-big-gray"><%= question.answers.count %> <span>answer</span></div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <div class="col-md-9">
+                      <p><%=link_to question.title, question %></p>
+                    </div>
+                    <% if current_user == question.user %>
+                      <div class= "col-md-1 text-right">
+                        <div class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-ellipsis-v"></span></a>
-                            <ul class="dropdown-menu">
+                          <ul class="dropdown-menu">
                             <% unless question.accepted %>
                               <li><%= link_to 'Edit', edit_question_path(question) %></li>
-                              <%end%>
-                              <li><%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-
-                        </div></div>
-                      <%end%>
-                      </ul>
-                    </div>
-
+                            <%end%>
+                            <li><%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                          </ul>
+                        </div>
+                      </div>
+                    <%end%>
+                  </div>
                 </div>
                 <div class="card-action">
                   <p>asked <%= time_tag(question.created_at) %> by <%= link_to question.user.username, user_path(question.user) %></p>
                 </div>
               </div>
             </div>
-
         </div>
       <% end %>
     </div>

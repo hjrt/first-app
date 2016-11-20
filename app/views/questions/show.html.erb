@@ -7,7 +7,7 @@
           <div class="card">
             <div class="card-content">
               <div class ="row">
-                <div class="col-md-2">
+                <div class="col-md-1">
                   <% if @question.accepted %>
                     <% if @question.answers.count > 1 || @question.answers.count == 0 %>
                       <div class="btn-big-green"><%= @question.answers.count %> <span>answers</span></div>
@@ -22,7 +22,7 @@
                     <% end %>
                   <% end %>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-10">
                   <div class="col-md-12">
                     <p><%= @question.title %></p>
                   </div>

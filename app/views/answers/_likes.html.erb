@@ -1,6 +1,3 @@
-<h4>Answers</h4>
-<hr>
-<div id="bork">
 <div class="row">
   <div class="col-md-12">
     <% @question.answers.order(accepted: :desc).each do |answer| %>
@@ -38,7 +35,6 @@
                 <% end %>
               </div>
             </div>
-                        <div id="accepted">
             <div class="row">
               <div class="col-md-12 text-center">
               <% if @question.accepted %>
@@ -46,14 +42,13 @@
                   <i class="fa fa-check fa-2x answers-accepted-answer"></i>
                 <% end %>
               <% else %>
-              	<% if current_user == answer.question.user && current_user != answer.user %>
-                	<%= link_to accept_answer_path(answer), method: :put do %>
+                <% if current_user == answer.question.user && current_user != answer.user %>
+                  <%= link_to accept_answer_path(answer), method: :put do %>
                     <i class="fa fa-check fa-2x"></i>
                   <% end %>
-             	  <% end %>
+                <% end %>
               <% end %>
             </div>
-          </div>
           </div>
         </div>
         <div class="col-md-11">

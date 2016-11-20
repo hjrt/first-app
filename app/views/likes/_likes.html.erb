@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-12 text-center">
+    <% if current_user != answer.user %>
+      <% if answer.has_users_like(current_user) %>
+        <i class="fa fa-caret-up fa-3x"></i>
+      <% else %>
+        <%= link_to answer_likes_path(answer), method: :post do %>
+          <i class="fa fa-caret-up fa-3x"></i>
+        <%end%>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 text-center answers-likes">
+    <%= answer.likes.count %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <% if current_user != answer.user %>
+      <% if answer.has_users_like(current_user) %>
+        <%= link_to answer_like_path(answer), method: :delete do %>
+          <i class="fa fa-caret-down fa-3x"></i>
+        <%end%>
+      <% else %>
+        <i class="fa fa-caret-down fa-3x"></i>
+      <% end %>
+    <% end %>
+  </div>
+</div>

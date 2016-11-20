@@ -13,11 +13,10 @@ Rails.application.routes.draw do
   end
 
   resources :answers do
-    resources :likes, only: [:create, :destroy]
     member do
       put "accept", to: "answers#accept"
-      # put "like", to: "answers#like"
-      # delete "unlike", to: "answers#unlike"
+      post "like", to: "likes#create"
+      delete "unlike", to: "likes#destroy"
     end
   end
   
